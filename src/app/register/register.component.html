@@ -1,86 +1,85 @@
 <div class="col-md-12">
   <div class="card card-container">
-    <img
-      id="profile-img"
-      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-      class="profile-img-card"
-    />
-    <form
-      *ngIf="!isSuccessful"
-      name="form"
-      (ngSubmit)="f.form.valid && onSubmit()"
-      #f="ngForm"
-      novalidate
-    >
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          class="form-control"
-          name="username"
-          [(ngModel)]="form.username"
-          required
-          minlength="3"
-          maxlength="20"
-          #username="ngModel"
-        />
-        <div class="alert-danger" *ngIf="username.errors && f.submitted">
-          <div *ngIf="username.errors.required">Username is required</div>
-          <div *ngIf="username.errors.minlength">
-            Username must be at least 3 characters
-          </div>
-          <div *ngIf="username.errors.maxlength">
-            Username must be at most 20 characters
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          name="email"
-          [(ngModel)]="form.email"
-          required
-          email
-          #email="ngModel"
-        />
-        <div class="alert-danger" *ngIf="email.errors && f.submitted">
-          <div *ngIf="email.errors.required">Email is required</div>
-          <div *ngIf="email.errors.email">
-            Email must be a valid email address
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          [(ngModel)]="form.password"
-          required
-          minlength="6"
-          #password="ngModel"
-        />
-        <div class="alert-danger" *ngIf="password.errors && f.submitted">
-          <div *ngIf="password.errors.required">Password is required</div>
-          <div *ngIf="password.errors.minlength">
-            Password must be at least 6 characters
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
-      </div>
+    <div class="main-box">
+      <div class="log">
+        <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card mb-2" />
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
 
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
-      </div>
-    </form>
+          <div class="row mb-2">
+            <div class=" col-md-6 col-12">
+              <div class="formgroup">
+                <input
+                  type="text"
+                  class="form-control mb-2"
+                  placeholder="First Name"
+                  name="fname"
+                  fname
+                 />
+              </div>
+            </div>
+            <div class=" col-md-6 col-12">
+              <div class="formgroup">
+                <input                  
+                  type="text"
+                  class="form-control mb-2"
+                  placeholder="Last Name"
+                  name="lname"
+                  lname
+                />
+              </div>
+            </div>
+          </div>
 
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
+          <div class="row mb-2">
+            <div class="col-md-6 col-6">
+              <input
+              type="email"
+              class="form-control"
+              name="email"
+              [(ngModel)]="form.email"
+              required
+              email
+              #email="ngModel"
+              placeholder="Email"
+            />
+            </div>
+            <div class="col-md-6 col-6">
+              <select 
+              name="role" 
+              id="role" 
+              class="form-control"
+              (change)="OnRoleChange($event)" 
+              >
+              <option *ngFor="let rol of Roles" [value]="rol.id">{{ rol.label }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div *ngIf="doctor" class="row mb-2">
+            <div class="col-md-6 col-6">
+              <input type="text" class="form-control" name="afflition" placeholder="Hosptal Address" />
+            </div>
+            <div class="col-md-6 col-6">
+              <select 
+              name="spec" 
+              id="spec" 
+              class="form-control"
+              (change)="OnSpecChange($event)" 
+              >
+              <option *ngFor="let spec of Specialisation" [value]="spec.id">{{ spec.label }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="login">
+              Sign Up
+            </button>
+          </div>
+          
+        </form>
+      </div>
     </div>
+
   </div>
 </div>
