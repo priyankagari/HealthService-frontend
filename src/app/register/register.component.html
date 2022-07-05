@@ -14,6 +14,8 @@
                   placeholder="First Name"
                   name="fname"
                   fname
+                  [(ngModel)] = "form.fname"
+                  #fname="ngModel"
                  />
               </div>
             </div>
@@ -25,6 +27,8 @@
                   placeholder="Last Name"
                   name="lname"
                   lname
+                  [(ngModel)] = "form.lname"
+                  #lname="ngModel"
                 />
               </div>
             </div>
@@ -49,6 +53,8 @@
               id="role" 
               class="form-control"
               (change)="OnRoleChange($event)" 
+              [(ngModel)] = "form.role"
+              #role="ngModel"
               >
               <option *ngFor="let rol of Roles" [value]="rol.id">{{ rol.label }}</option>
               </select>
@@ -61,13 +67,40 @@
             </div>
             <div class="col-md-6 col-6">
               <select 
-              name="spec" 
+              name="specialisation" 
               id="spec" 
               class="form-control"
+              [(ngModel)] = "form.specialisation"
+              #specialisation="ngModel"
               (change)="OnSpecChange($event)" 
               >
               <option *ngFor="let spec of Specialisation" [value]="spec.id">{{ spec.label }}</option>
               </select>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-md-6 col-12">
+              <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="New password"
+              data-cy="firstPassword"
+              />
+    
+            </div>
+            <div class="col-md-6 col-12 mb-2">
+
+              <input
+              type="password"
+              class="form-control"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm the new password"
+              data-cy="secondPassword"
+            />
             </div>
           </div>
 
